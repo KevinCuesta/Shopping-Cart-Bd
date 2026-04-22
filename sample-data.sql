@@ -1,51 +1,47 @@
--- Insert sample categories
+﻿-- Insertar categorias de ejemplo
 INSERT INTO inventory.category (name, description, state) VALUES
-('Electronics', 'Electronic devices and gadgets', 'ACTIVE'),
-('Clothing', 'Apparel and fashion items', 'ACTIVE'),
-('Books', 'Physical books and reading materials', 'ACTIVE'),
-('Home & Garden', 'Household and garden products', 'ACTIVE'),
-('Sports & Outdoors', 'Sports equipment and outdoor gear', 'ACTIVE');
+('Electronicos', 'Dispositivos y accesorios electronicos', 'ACTIVE'),
+('Ropa', 'Prendas de vestir y moda', 'ACTIVE'),
+('Libros', 'Libros fisicos y material de lectura', 'ACTIVE'),
+('Hogar y Jardin', 'Productos para el hogar y el jardin', 'ACTIVE'),
+('Deportes', 'Equipo deportivo y articulos para actividades al aire libre', 'ACTIVE');
 
--- Insert sample products
+-- Insertar productos de ejemplo
 INSERT INTO inventory.product (name, description, price, category_id, state) VALUES
-('Wireless Headphones', 'Premium noise-cancelling wireless headphones with 30-hour battery life', 199.99, (SELECT id FROM inventory.category WHERE name='Electronics'), 'ACTIVE'),
-('USB-C Cable', 'High-quality 6ft USB-C charging and data cable', 14.99, (SELECT id FROM inventory.category WHERE name='Electronics'), 'ACTIVE'),
-('4K Webcam', 'Crystal clear 4K webcam perfect for streaming and video calls', 79.99, (SELECT id FROM inventory.category WHERE name='Electronics'), 'ACTIVE'),
-('Laptop Stand', 'Adjustable aluminum laptop stand for better desk ergonomics', 34.99, (SELECT id FROM inventory.category WHERE name='Electronics'), 'ACTIVE'),
+('Auriculares Inalambricos', 'Auriculares inalambricos con cancelacion de ruido y 30 horas de bateria', 199.99, (SELECT id FROM inventory.category WHERE name='Electronicos'), 'ACTIVE'),
+('Cable USB-C', 'Cable USB-C de 6 pies para carga y datos', 14.99, (SELECT id FROM inventory.category WHERE name='Electronicos'), 'ACTIVE'),
+('Webcam 4K', 'Webcam 4K ideal para streaming y videollamadas', 79.99, (SELECT id FROM inventory.category WHERE name='Electronicos'), 'ACTIVE'),
+('Soporte para Laptop', 'Soporte ajustable de aluminio para mejor ergonomia', 34.99, (SELECT id FROM inventory.category WHERE name='Electronicos'), 'ACTIVE'),
+('Camiseta de Algodon', 'Camiseta comoda 100% algodon en varios colores', 19.99, (SELECT id FROM inventory.category WHERE name='Ropa'), 'ACTIVE'),
+('Jeans de Mezclilla', 'Jeans clasicos de mezclilla con ajuste perfecto', 59.99, (SELECT id FROM inventory.category WHERE name='Ropa'), 'ACTIVE'),
+('Chaqueta de Invierno', 'Chaqueta impermeable con forro termico', 129.99, (SELECT id FROM inventory.category WHERE name='Ropa'), 'ACTIVE'),
+('Zapatos para Correr', 'Zapatos ligeros para correr con amortiguacion avanzada', 89.99, (SELECT id FROM inventory.category WHERE name='Ropa'), 'ACTIVE'),
+('Guia de JavaScript', 'Guia completa de desarrollo moderno con JavaScript', 39.99, (SELECT id FROM inventory.category WHERE name='Libros'), 'ACTIVE'),
+('Recetario de Python', 'Recetas practicas y soluciones para programacion en Python', 34.99, (SELECT id FROM inventory.category WHERE name='Libros'), 'ACTIVE'),
+('Fundamentos de Diseno Web', 'Aprende los conceptos basicos de diseno web responsivo', 29.99, (SELECT id FROM inventory.category WHERE name='Libros'), 'ACTIVE'),
+('Lampara de Escritorio LED', 'Lampara LED eficiente con brillo ajustable', 44.99, (SELECT id FROM inventory.category WHERE name='Hogar y Jardin'), 'ACTIVE'),
+('Juego de Macetas', 'Juego de 3 macetas de ceramica con drenaje', 24.99, (SELECT id FROM inventory.category WHERE name='Hogar y Jardin'), 'ACTIVE'),
+('Cafetera', 'Cafetera programable para 12 tazas', 69.99, (SELECT id FROM inventory.category WHERE name='Hogar y Jardin'), 'ACTIVE'),
+('Esterilla de Yoga', 'Esterilla antideslizante con correa de transporte', 27.99, (SELECT id FROM inventory.category WHERE name='Deportes'), 'ACTIVE'),
+('Botella Termica', 'Botella aislante que mantiene liquidos frios o calientes', 35.99, (SELECT id FROM inventory.category WHERE name='Deportes'), 'ACTIVE'),
+('Casco para Bicicleta', 'Casco certificado para bicicleta con ventilacion', 54.99, (SELECT id FROM inventory.category WHERE name='Deportes'), 'ACTIVE');
 
-('Cotton T-Shirt', 'Comfortable 100% cotton t-shirt in multiple colors', 19.99, (SELECT id FROM inventory.category WHERE name='Clothing'), 'ACTIVE'),
-('Denim Jeans', 'Classic blue denim jeans with perfect fit', 59.99, (SELECT id FROM inventory.category WHERE name='Clothing'), 'ACTIVE'),
-('Winter Jacket', 'Warm waterproof winter jacket with thermal lining', 129.99, (SELECT id FROM inventory.category WHERE name='Clothing'), 'ACTIVE'),
-('Running Shoes', 'Lightweight running shoes with advanced cushioning', 89.99, (SELECT id FROM inventory.category WHERE name='Clothing'), 'ACTIVE'),
-
-('JavaScript Guide', 'Comprehensive guide to modern JavaScript development', 39.99, (SELECT id FROM inventory.category WHERE name='Books'), 'ACTIVE'),
-('Python Cookbook', 'Practical recipes and solutions for Python programming', 34.99, (SELECT id FROM inventory.category WHERE name='Books'), 'ACTIVE'),
-('Web Design Basics', 'Learn the fundamentals of responsive web design', 29.99, (SELECT id FROM inventory.category WHERE name='Books'), 'ACTIVE'),
-
-('LED Desk Lamp', 'Energy-efficient LED lamp with adjustable brightness', 44.99, (SELECT id FROM inventory.category WHERE name='Home & Garden'), 'ACTIVE'),
-('Plant Pot Set', 'Set of 3 ceramic plant pots with drainage', 24.99, (SELECT id FROM inventory.category WHERE name='Home & Garden'), 'ACTIVE'),
-('Coffee Maker', 'Programmable coffee maker for 12 cups', 69.99, (SELECT id FROM inventory.category WHERE name='Home & Garden'), 'ACTIVE'),
-
-('Yoga Mat', 'Non-slip yoga mat with carrying strap', 27.99, (SELECT id FROM inventory.category WHERE name='Sports & Outdoors'), 'ACTIVE'),
-('Water Bottle', 'Insulated water bottle keeps drinks hot/cold for 24 hours', 35.99, (SELECT id FROM inventory.category WHERE name='Sports & Outdoors'), 'ACTIVE'),
-('Bicycle Helmet', 'Safety-certified bicycle helmet with ventilation', 54.99, (SELECT id FROM inventory.category WHERE name='Sports & Outdoors'), 'ACTIVE');
-
--- Insert inventory quantities
+-- Insertar cantidades de inventario
 INSERT INTO inventory.inventory (product_id, quantity, state) VALUES
-((SELECT id FROM inventory.product WHERE name='Wireless Headphones'), 50, 'ACTIVE'),
-((SELECT id FROM inventory.product WHERE name='USB-C Cable'), 200, 'ACTIVE'),
-((SELECT id FROM inventory.product WHERE name='4K Webcam'), 30, 'ACTIVE'),
-((SELECT id FROM inventory.product WHERE name='Laptop Stand'), 75, 'ACTIVE'),
-((SELECT id FROM inventory.product WHERE name='Cotton T-Shirt'), 150, 'ACTIVE'),
-((SELECT id FROM inventory.product WHERE name='Denim Jeans'), 80, 'ACTIVE'),
-((SELECT id FROM inventory.product WHERE name='Winter Jacket'), 40, 'ACTIVE'),
-((SELECT id FROM inventory.product WHERE name='Running Shoes'), 60, 'ACTIVE'),
-((SELECT id FROM inventory.product WHERE name='JavaScript Guide'), 25, 'ACTIVE'),
-((SELECT id FROM inventory.product WHERE name='Python Cookbook'), 20, 'ACTIVE'),
-((SELECT id FROM inventory.product WHERE name='Web Design Basics'), 30, 'ACTIVE'),
-((SELECT id FROM inventory.product WHERE name='LED Desk Lamp'), 45, 'ACTIVE'),
-((SELECT id FROM inventory.product WHERE name='Plant Pot Set'), 90, 'ACTIVE'),
-((SELECT id FROM inventory.product WHERE name='Coffee Maker'), 35, 'ACTIVE'),
-((SELECT id FROM inventory.product WHERE name='Yoga Mat'), 55, 'ACTIVE'),
-((SELECT id FROM inventory.product WHERE name='Water Bottle'), 100, 'ACTIVE'),
-((SELECT id FROM inventory.product WHERE name='Bicycle Helmet'), 42, 'ACTIVE');
+((SELECT id FROM inventory.product WHERE name='Auriculares Inalambricos'), 50, 'ACTIVE'),
+((SELECT id FROM inventory.product WHERE name='Cable USB-C'), 200, 'ACTIVE'),
+((SELECT id FROM inventory.product WHERE name='Webcam 4K'), 30, 'ACTIVE'),
+((SELECT id FROM inventory.product WHERE name='Soporte para Laptop'), 75, 'ACTIVE'),
+((SELECT id FROM inventory.product WHERE name='Camiseta de Algodon'), 150, 'ACTIVE'),
+((SELECT id FROM inventory.product WHERE name='Jeans de Mezclilla'), 80, 'ACTIVE'),
+((SELECT id FROM inventory.product WHERE name='Chaqueta de Invierno'), 40, 'ACTIVE'),
+((SELECT id FROM inventory.product WHERE name='Zapatos para Correr'), 60, 'ACTIVE'),
+((SELECT id FROM inventory.product WHERE name='Guia de JavaScript'), 25, 'ACTIVE'),
+((SELECT id FROM inventory.product WHERE name='Recetario de Python'), 20, 'ACTIVE'),
+((SELECT id FROM inventory.product WHERE name='Fundamentos de Diseno Web'), 30, 'ACTIVE'),
+((SELECT id FROM inventory.product WHERE name='Lampara de Escritorio LED'), 45, 'ACTIVE'),
+((SELECT id FROM inventory.product WHERE name='Juego de Macetas'), 90, 'ACTIVE'),
+((SELECT id FROM inventory.product WHERE name='Cafetera'), 35, 'ACTIVE'),
+((SELECT id FROM inventory.product WHERE name='Esterilla de Yoga'), 55, 'ACTIVE'),
+((SELECT id FROM inventory.product WHERE name='Botella Termica'), 100, 'ACTIVE'),
+((SELECT id FROM inventory.product WHERE name='Casco para Bicicleta'), 42, 'ACTIVE');
